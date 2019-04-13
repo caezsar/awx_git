@@ -1,0 +1,25 @@
+- name: list uptime
+# To run only against a group defined in Tower inventory choosen to run this template
+#  hosts: linux_servers
+  hosts: all
+  tasks:
+    - name: List uptime
+      shell: "echo ; hostname; echo ; uptime"
+      register: uptime
+
+    - debug: 
+        var: uptime.stdout_lines
+
+    - name: Dump vars to /tmp/setup-dump.json
+      delegate_to: localhost
+      run_once: true
+      copy:
+        content: "{{ hostvars[inventory_hostname] | to_nice_json }}"
+        dest: /tmp/setup-dump.json
+
+    - name: Display all variables/facts known for a host
+      debug:
+        var: hostvars[inventory_hostname]
+      tags: debug_info
+
+
