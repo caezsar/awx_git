@@ -15,7 +15,7 @@
       run_once: true
       copy:
         content: "{{ hostvars[inventory_hostname] | to_nice_json }}"
-        dest: "/tmp/{{ hostvars[inventory_hostname] }}-dump.json"
+        dest: "/tmp/{{ inventory_hostname }}-dump.json"
 
     - name: Display all variables/facts known for a host
       debug:
