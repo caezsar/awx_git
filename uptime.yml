@@ -2,6 +2,8 @@
 # To run only against a group defined in Tower inventory choosen to run this template
 #  hosts: linux_servers
   hosts: all
+  remote_user: root
+
   tasks:
     - name: List uptime
       shell: "echo ; hostname; echo ; uptime"
@@ -15,14 +17,17 @@
       run_once: true
       copy:
         content: "{{ hostvars[inventory_hostname] | to_nice_json }}"
-#        content: "{{ inventory_hostname | to_nice_json }}"
-        dest: "/tmp/{{ item }}.facts"
-      with_items:
-        - "{{ hostvars[inventory_hostname] }}"
+        dest: "/tmp/all.facts"
+#      with_items:
+#        - "{{ hostvars[inventory_hostname] }}"
 
     - name: Display all variables/facts known for a host
       debug:
         var: hostvars[inventory_hostname]
+      register: fct
 #      tags: debug_info
 
+
+  #  - name: dump to file
+  #    shell: "{{ fct.stdout_lines }} >> /tmp/facts.txt"
 
