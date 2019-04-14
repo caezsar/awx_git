@@ -1,7 +1,7 @@
 - name: list uptime
 # To run only against a group defined in Tower inventory choosen to run this template
-#  hosts: Linux
-  hosts: all
+  hosts: Linux
+#  hosts: all
   remote_user: root
 
   tasks:
