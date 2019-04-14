@@ -28,6 +28,13 @@
 #      tags: debug_info
 
 
-  #  - name: dump to file
-  #    shell: "{{ fct.stdout_lines }} >> /tmp/facts.txt"
-
+    - name: Install packages
+      yum: 
+        name: "{{ rpms }}"
+        state: present
+      vars:
+        rpms:
+          - iperf3
+          - git
+          - jnettop
+       
