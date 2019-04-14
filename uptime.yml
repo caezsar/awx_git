@@ -1,6 +1,6 @@
 - name: list uptime
 # To run only against a group defined in Tower inventory choosen to run this template
-#  hosts: linux_servers
+#  hosts: Linux
   hosts: all
   remote_user: root
 
@@ -37,4 +37,4 @@
           - iperf3
           - git
           - jnettop
-       
+      when: ansible_distribution == "CentOS"       
