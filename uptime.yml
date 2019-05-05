@@ -14,11 +14,11 @@
         var: uptime.stdout_lines
 
     - name: Dump vars to /tmp/{{ inventory_hostname }}.facts
-      delegate_to: localhost
+#      delegate_to: localhost
       run_once: true
       copy:
         content: "{{ hostvars[inventory_hostname] | to_nice_json }}"
-        dest: "/tmp/all.facts"
+        dest: "/tmp/{{ inventory_hostname }}.facts"
 #      with_items:
 #        - "{{ hostvars[inventory_hostname] }}"
 
