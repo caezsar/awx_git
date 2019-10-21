@@ -39,4 +39,5 @@
           - git
           - jnettop
           - net-tools
+          - jq
       when: ansible_distribution == "CentOS"       
