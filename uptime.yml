@@ -38,4 +38,5 @@
           - iperf3
           - git
           - jnettop
+          - net-tools
       when: ansible_distribution == "CentOS"       
